@@ -1,0 +1,3 @@
+[submodule "glowing_sakana"]
+	path = glowing_sakana
+	url = https://github.com/fishjord/glowing_sakana

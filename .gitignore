@@ -1,0 +1,6 @@
+*.bloom
+*.fasta
+*.stderr
+*~
+#*#
+*.txt
