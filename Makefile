@@ -61,7 +61,7 @@ clean:
 	cd bowtie && $(MAKE) clean
 
 very_clean: clean
-	- (rm -rf $(NAME).bloom $(PYTHON_VIRTENV))
+	- (rm -rf $(NAME).bloom)
 
 setup: glowing_sakana/.gitignore py_virtenv/bin/activate
 
