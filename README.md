@@ -1,3 +1,6 @@
+* This list will contain the toc (it doesn't matter what you write here)
+{:toc}
+
 # Xander skeleton analysis pipeline
 
 ## Setup
@@ -95,12 +98,12 @@ qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=<THREADS> -v workdir=`pwd`,targ
 ```
 
 2.
-```base
+```bash
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=4 -v workdir=`pwd`,targets=<gene_name> bin/make_wrapper.sh
 ```
 
 3. 
-```base
+```bash
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=4 -v workdir=`pwd`,targets=bowtie bin/make_wrapper.sh
 ```
 
