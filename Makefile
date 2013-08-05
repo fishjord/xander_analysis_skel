@@ -1,11 +1,13 @@
-NAME= iowa_prairie
-SEQFILE= /mnt/lustre_scratch_2012/gjr/data/gpgc/SEQ.fa
-genes= nirk rplb nifh
+NAME= ANALYSIS_NAME
+SEQFILE= /path/to/seqfile
+genes= rplb nirk nifh
 
 MAX_JVM_HEAP= 48G
 K_SIZE= 30
 FILTER_SIZE= 38 # 2**FILTER_SIZE, 38 = 32 gigs, 37 = 16 gigs, 36 = 8 gigs, 35 = 4 gigs
+THREADS= 4
 
+MIN_BITS= 50
 MIN_LENGTH= 150  # in nucleotides
 MIN_MEDIAN_COV= 3
 MIN_MAPPED_RATIO= 1 #Ratio of the contig that must have reads mapped to it
@@ -26,9 +28,9 @@ WEBLOGO= /home/fishjord/apps/weblogo-3.3/weblogo
 
 export
 
-all: $(genes) all_contigs cdhit bowtie
+all: $(genes) bowtie
 
-.PHONY: $(genes) clean setup veryclean bowtie cdhit
+.PHONY: $(genes) clean setup veryclean bowtie
 
 bloom: $(NAME).bloom
 
@@ -47,15 +49,9 @@ filtered_starts.txt: starts.txt
 	(. $(PYTHON_VIRTENV)/bin/activate;$(GLOWING_SAKANA)/hmmgs/filter_starts.py starts.txt > filtered_starts.txt) || (rm filtered_starts.txt && false)
 
 starts.txt: $(SEQFILE)
-	(java -Xmx2g  -jar $(JAR_DIR)/KmerFilter.jar fast_kmer_filter --threads=4 -a $(K_SIZE) -o starts.txt $(SEQFILE) $(foreach gene,$(genes),$(gene)=$(gene)/ref_aligned.faa)) || (rm starts.txt && false)
+	(java -Xmx2g  -jar $(JAR_DIR)/KmerFilter.jar fast_kmer_filter --threads=$(THREADS) -a $(K_SIZE) -o starts.txt $(SEQFILE) $(foreach gene,$(genes),$(gene)=$(gene)/ref_aligned.faa)) || (rm starts.txt && false)
 
-all_contigs: $(genes)
-	$(MAKE) -C all_contigs
-
-cdhit: all_contigs
-	$(MAKE) -C cdhit
-
-bowtie: cdhit
+bowtie: $(genes)
 	$(MAKE) -C bowtie
 
 clean:

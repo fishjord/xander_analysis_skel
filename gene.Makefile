@@ -8,7 +8,7 @@ basic_hmmgs.txt: $(BLOOM)
 	(java -Xmx$(MAX_JVM_HEAP) -jar $(JAR_DIR)/hmmgs.jar search 1 30 $(BLOOM) for_enone.hmm rev_enone.hmm $(hmmgs_result_prefix) > basic_hmmgs.txt 2> hmmgs.stderr) || (rm basic_hmmgs.txt && false)
 
 nucl_merged.fasta: $(hmmgs_result_prefix)_nucl.fasta
-	java -Xmx4g -jar $(JAR_DIR)/hmmgs.jar merge --min-bits 20 for_enone.hmm basic_hmmgs.txt $(hmmgs_result_prefix)_nucl.fasta &> merge_stats.txt
+	java -Xmx4g -jar $(JAR_DIR)/hmmgs.jar merge --min-bits $(MIN_BITS) --min-length $(MIN_LENGTH) for_enone.hmm basic_hmmgs.txt $(hmmgs_result_prefix)_nucl.fasta &> merge_stats.txt
 
 primers:
 	mkdir primers
