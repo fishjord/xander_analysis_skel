@@ -1,6 +1,3 @@
-* This list will contain the toc (it doesn't matter what you write here)
-{:toc}
-
 # Xander skeleton analysis pipeline
 
 ## Setup
