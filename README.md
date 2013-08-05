@@ -83,7 +83,7 @@ make bowtie
 ### Running on the MSU (or similar) High Performance Computing Cluster
 Included in the analysis pipeline is a script that can be submitted to job control systems (tested with qsub on the MSU HPCC) in bin/make_wrapper.sh, below are commands for the steps listed above to submit each task to a cluster instead
 
-1. 
+1. Bloom filter & assembly starts
     a. 
 ```bash
 qsub -l walltime=24:00:00,mem=<MAX_MEM>mb -v workdir=`pwd`,targets=bloom bin/make_wrapper.sh
@@ -94,12 +94,12 @@ qsub -l walltime=24:00:00,mem=<MAX_MEM>mb -v workdir=`pwd`,targets=bloom bin/mak
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=<THREADS> -v workdir=`pwd`,targets=filtered_starts.txt bin/make_wrapper.sh
 ```
 
-2.
+2.  Assemble each gene (each gene can be done in parallel)
 ```bash
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=4 -v workdir=`pwd`,targets=<gene_name> bin/make_wrapper.sh
 ```
 
-3. 
+3. Bowtie and K-mer mapping (In progress)
 ```bash
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=4 -v workdir=`pwd`,targets=bowtie bin/make_wrapper.sh
 ```
