@@ -15,10 +15,10 @@ This will configure a python virtual environment, clone a utility scripts git re
 
 * GNU Make
 * Python 2.7+
-  * numpy 1.6+
-  * matplotlib 1.2+
-  * biopython
-  * argparse
+    * numpy 1.6+
+    * matplotlib 1.2+
+    * biopython
+    * argparse
 * Java 1.6+
 * HMMER 3.0 (If using 3.1+ remove --allcol from gene.Makefile)
 * Samtools 0.1.12+
@@ -60,12 +60,12 @@ make setup && make
 some steps steps can be run in parallel as suggested below
 
 1. 
-  a. Building the bloom filter (once per dataset)
+    a. Building the bloom filter (once per dataset)
 ```bash
 	make bloom
 ```
 
-  b. Identify assembly starting kmers (can be done in parallel with bloom filter generation), this step will use up to THREAD threads
+    b. Identify assembly starting kmers (can be done in parallel with bloom filter generation), this step will use up to THREAD threads
 ```bash
 	make filtered_starts.txt
 ```
@@ -84,12 +84,12 @@ make bowtie
 Included in the analysis pipeline is a script that can be submitted to job control systems (tested with qsub on the MSU HPCC) in bin/make_wrapper.sh, below are commands for the steps listed above to submit each task to a cluster instead
 
 1. 
-  a. 
+    a. 
 ```bash
 qsub -l walltime=24:00:00,mem=<MAX_MEM>mb -v workdir=`pwd`,targets=bloom bin/make_wrapper.sh
 ```
 
-  b.
+    b.
 ```bash
 qsub -l walltime=08:00:00,mem=4000mb,nodes=1:ppn=<THREADS> -v workdir=`pwd`,targets=filtered_starts.txt bin/make_wrapper.sh
 ```
