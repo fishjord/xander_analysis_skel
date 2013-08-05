@@ -4,3 +4,9 @@
 *~
 #*#
 *.txt
+*.alignment
+make_wrapper.sh.o*
+make_wrapper.sh.e*
+*.sto
+*.clstr
+py_virtenv

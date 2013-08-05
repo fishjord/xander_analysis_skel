@@ -1,23 +1,28 @@
-NAME= ANALYSIS_NAME_HERE
-SEQFILE= /path/to/seqfile
+NAME= iowa_prairie
+SEQFILE= /mnt/lustre_scratch_2012/gjr/data/gpgc/SEQ.fa
 genes= nirk rplb nifh
-MAX_JVM_HEAP= 4G
 
+MAX_JVM_HEAP= 48G
 K_SIZE= 30
-FILTER_SIZE= 34 # 2**FILTER_SIZE, 38 = 32 gigs, 37 = 16 gigs, 36 = 8 gigs, 35 = 4 gigs
+FILTER_SIZE= 38 # 2**FILTER_SIZE, 38 = 32 gigs, 37 = 16 gigs, 36 = 8 gigs, 35 = 4 gigs
+
 MIN_LENGTH= 150  # in nucleotides
 MIN_MEDIAN_COV= 3
 MIN_MAPPED_RATIO= 1 #Ratio of the contig that must have reads mapped to it
+
 ASSEMBLY_FILE= all_contigs.fasta
 
 BOWTIE= bowtie2
 SAMTOOLS= samtools
+CDHIT= cd-hit
+
 JAR_DIR=$(realpath jars)
 GLOWING_SAKANA=$(realpath glowing_sakana)
 PYTHON_VIRTENV=$(realpath py_virtenv)
 GENE_MAKEFILE=$(realpath gene.Makefile)
 BLOOM= $(realpath $(NAME).bloom)
-CDHIT= cd-hit
+HMMALIGN= hmmalign
+WEBLOGO= /home/fishjord/apps/weblogo-3.3/weblogo
 
 export
 
