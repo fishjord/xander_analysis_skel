@@ -3,7 +3,6 @@
 *.stderr
 *~
 #*#
-*.txt
 *.alignment
 make_wrapper.sh.o*
 make_wrapper.sh.e*
