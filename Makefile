@@ -38,7 +38,7 @@ $(NAME).bloom: $(SEQFILE)
 	java -Xmx$(MAX_JVM_HEAP) -jar $(JAR_DIR)/hmmgs.jar build $(SEQFILE) $(NAME).bloom $(K_SIZE) $(FILTER_SIZE)
 
 %/gene_starts.txt: filtered_starts.txt
-	grep $* filtered_starts.txt > $*/gene_starts.txt
+	grep -w $* filtered_starts.txt > $*/gene_starts.txt
 
 .SECONDEXPANSION:
 
